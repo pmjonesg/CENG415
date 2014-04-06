@@ -33,8 +33,8 @@ public class jdbc{
 			// 4. PROCESS
 	        while(true)
 	        {
-	            System.out.println("1. Search by first name or last name\n2. Find sections by course_no\n3. Search a course by keyword(s)\n4. Find total cost of courses\n5. Add a Student\n");
-	            System.out.print("Enter an option (1-5) or 0 to quit: ");
+	            System.out.println("1. Search by first name or last name\n2. Find sections by course_no\n3. Search a course by keyword(s)\n4. Find total cost of courses\n5. Add a Student\n6. Add an Instructor\n");
+	            System.out.print("Enter an option (1-6) or 0 to quit: ");
 
 	            Scanner in = new Scanner(System.in);
 	            inputint =  in.nextInt();
@@ -58,6 +58,14 @@ public class jdbc{
                 {
                    addStudent.newStudent(con);
                 }
+                else if(inputint == 6)
+                {
+                	addInstructor.newInstructor(con);
+                }
+                else if(inputint == 7)
+                {
+                	addSection.newSection(con);
+                }
 	            else if(inputint == 0)
 	            {
 	            	System.out.println("The program has ended, closing connections...\n\n");
@@ -76,8 +84,11 @@ public class jdbc{
 
 		}
 		catch(SQLException e){
-			System.out.println("SQL Exception: " + e.getMessage());
-			e.printStackTrace();
+			if(e instanceof SQLIntegrityConstraintViolationException) {
+        		System.out.println("Zipcode already exists.");
+			//System.out.println("SQL Exception: " + e.getMessage());
+			//e.printStackTrace();
+			}
 		}
 	}
 }
