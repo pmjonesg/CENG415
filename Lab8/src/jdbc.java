@@ -66,6 +66,10 @@ public class jdbc{
                 {
                 	addSection.newSection(con);
                 }
+                else if(inputint == 8)
+                {
+                	newEnroll.addCourses(con);
+                }
 	            else if(inputint == 0)
 	            {
 	            	System.out.println("The program has ended, closing connections...\n\n");
