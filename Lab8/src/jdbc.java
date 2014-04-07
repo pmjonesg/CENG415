@@ -70,6 +70,10 @@ public class jdbc{
                 {
                 	newEnroll.addCourses(con);
                 }
+                else if(inputint == 9)
+                {
+                	dropStudent.deleteStudent(con);
+                }
 	            else if(inputint == 0)
 	            {
 	            	System.out.println("The program has ended, closing connections...\n\n");
