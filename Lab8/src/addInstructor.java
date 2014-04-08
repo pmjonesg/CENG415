@@ -12,30 +12,29 @@ public class addInstructor {
             Scanner scan = new Scanner(System.in);
           
             System.out.println("Please enter salutation (Mr. Ms.): ");
-            String  instSalutation= scan.next();
+            String  instSalutation= scan.nextLine();
             System.out.println("Please enter First Name: ");
-            String instFname = scan.next();
+            String instFname = scan.nextLine();
             System.out.println("Please enter Last Name: ");
-            String instLname = scan.next();
+            String instLname = scan.nextLine();
             System.out.println("Please enter Street Address: ");
-            String instAddr = scan.next();    
+            String instAddr = scan.nextLine();    
             System.out.println("Please enter Zip: ");
-            String instZip = scan.next();
-            System.out.println("Please enter Phone: ");
-            String instPhone = scan.next();
-			
-            String sql = "INSERT INTO ZIPCODE(ZIP, CITY, STATE, CREATED_BY, CREATED_DATE,"
-                         + "MODIFIED_BY, MODIFIED_DATE)"
-                         + "VALUES(?, NULL, NULL, USER, SYSDATE, USER, SYSDATE)";
-    
+            String instZip = scan.nextLine();
+            
+            /* Check if zip exists */
+            String sql = "SELECT ZIP FROM ZIPCODE WHERE ZIP LIKE ?";
+            
             PreparedStatement prepStmt1 = con.prepareStatement(sql);
             prepStmt1.setString(1, instZip);
-            try {
-            	ResultSet res = prepStmt1.executeQuery();
-            } catch (Exception e) {
-            	System.out.println("Zipcode already exists.\n");
+            ResultSet res = prepStmt1.executeQuery();
+            if(res.next() == false){
+            	System.out.println("Zipcode doesn't exist");
             	return;
-            }
+            } else ;
+            
+            System.out.println("Please enter Phone: ");
+            String instPhone = scan.nextLine();
             
             String sql1 = "INSERT INTO INSTRUCTOR("
                     + "INSTRUCTOR_ID, SALUTATION, FIRST_NAME, LAST_NAME,"
@@ -62,7 +61,7 @@ public class addInstructor {
             ResultSet rs = prepStmt2.executeQuery();
 
 
-            System.out.println("Instructor ID\tSalutation\tFirst Name\tLast Name\tStreet Address\tZip\tPhone Number\tCreated By\tCreated Date\tModified By\tModified Date");
+            System.out.println("Instructor ID\tSalutation\tFirst Name\tLast Name\tStreet Address\tZip\tPhone Number\t\tCreated By\t\tCreated Date\tModified By\tModified Date");
             while (rs.next()){
                 System.out.println("\t" + rs.getString("INSTRUCTOR_ID") + "\t\t" + rs.getString("Salutation") + "\t\t" + rs.getString("FIRST_NAME") + "\t\t" + rs.getString("LAST_NAME") + "\t\t" + rs.getString("STREET_ADDRESS") + "\t\t" + rs.getString("ZIP") + "\t\t" + rs.getString("PHONE") + "\t\t" + rs.getString("CREATED_BY") + "\t\t" + rs.getString("CREATED_DATE") + "\t\t" + rs.getString("MODIFIED_BY") + "\t\t" + rs.getString("MODIFIED_DATE"));
             }

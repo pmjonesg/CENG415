@@ -33,8 +33,8 @@ public class jdbc{
 			// 4. PROCESS
 	        while(true)
 	        {
-	            System.out.println("1. Search by first name or last name\n2. Find sections by course_no\n3. Search a course by keyword(s)\n4. Find total cost of courses\n5. Add a Student\n6. Add an Instructor\n");
-	            System.out.print("Enter an option (1-6) or 0 to quit: ");
+	            System.out.println("1. Search by first name or last name\n2. Find sections by course_no\n3. Search a course by keyword(s)\n4. Find total cost of courses\n5. Add a Student\n6. Add an Instructor\n7. Assign a section and course to an instructor\n8. Enroll a student into course(s)\n9. Drop a student from a course\n");
+	            System.out.print("Enter an option (1-9) or 0 to quit: ");
 
 	            Scanner in = new Scanner(System.in);
 	            inputint =  in.nextInt();
@@ -76,7 +76,7 @@ public class jdbc{
                 }
 	            else if(inputint == 0)
 	            {
-	            	System.out.println("The program has ended, closing connections...\n\n");
+	            	System.out.println("The program has ended, closing connections...\n");
 	            	break;
 	            }
 	            else

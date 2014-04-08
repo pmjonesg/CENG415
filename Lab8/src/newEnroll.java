@@ -36,7 +36,7 @@ public class newEnroll {
        			if("".equals(courseString[i]))
                		i++;
        			
-       			/* Parse string to int */
+       			/* Parse course string to int */
        			int courseNum = Integer.parseInt(courseString[i].trim());
        			String sql3 = "SELECT COURSE_NO FROM SECTION WHERE COURSE_NO = ?";
 
@@ -47,7 +47,7 @@ public class newEnroll {
                	ResultSet res1 = prepStmt3.executeQuery();
                	if(res1.next() == false)
                	{
-               		System.out.println("Course No doesn't exist.\n");
+               		System.out.println("Course Number doesn't exist.\n");
                		scan1.close();
                		return;
                	} else ; 			

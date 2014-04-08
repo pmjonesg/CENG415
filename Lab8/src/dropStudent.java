@@ -13,9 +13,8 @@ public class dropStudent {
           
             System.out.println("Please enter an existing Student Id: ");
             int dropStudent = scan.nextInt();
-            System.out.println("Please enter Course Nos to add (separated by commas): ");
-            int dropCourse = scan.nextInt();
             
+            /* Test if student id exists */
             String sql = "SELECT STUDENT_ID FROM STUDENT WHERE STUDENT_ID = ?";
 
             PreparedStatement prepStmt = con.prepareStatement(sql);
@@ -27,8 +26,11 @@ public class dropStudent {
        			System.out.println("Student Id doesn't exist.\n");
        			return;
        		} else ;
-			
             
+            System.out.println("Please enter Course Number to drop: ");
+            int dropCourse = scan.nextInt();			
+            
+            /* Check if course number exists */
    			String sql1 = "SELECT COURSE_NO FROM SECTION WHERE COURSE_NO = ?";
 
             PreparedStatement prepStmt1 = con.prepareStatement(sql1);
@@ -49,7 +51,7 @@ public class dropStudent {
        		prepStmt4.setInt(1, dropCourse);
        		
        		ResultSet res2 = prepStmt4.executeQuery();
-       		System.out.println("Section Id");
+       		System.out.println("Section Id\n");
        		while(res2.next())
        		{
        			System.out.println(res2.getString("SECTION_ID"));
